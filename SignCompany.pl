@@ -15,7 +15,8 @@ use constant "GOLD_LEAF" => 2;
 use constant "MAX_RECUSION" => 2;
 use constant "WRONG_COLOR" => 2;
 
-my ($counter, $finalMaterial, $totalCost, $characters, $fontColor, $orderNumber, $name, $errorCode);
+my ($counter, $finalMaterial, $totalCost, $characters, $fontColor, $orderNumber, $name, $errorCode, $characterMultiplier, $totalCharacters);
+
 
 sub main {
 	if (!(defined $totalCost)){
@@ -28,9 +29,9 @@ sub main {
 	setName();
 	setMaterial();
 	setCharacters();
+	doCharacterMath();
 	setColors();
 	printResults();
-	#displayError();
 	askToContinue();
 }
 
@@ -47,7 +48,6 @@ sub setCounter {
 		print "\n\nyou take up too much energy, goodbye!\n\n";
 		sleep 2;
 		die;
-		
 	}
 		
 }
@@ -67,7 +67,7 @@ sub setMaterial {
 	my $woodType;
 	use constant "OAK" => 1;
 	use constant "PINE" => 0;
-	print ("\n\n\tThe materials I can make a sign out of are Pine and Oak ". DOLLAR_SIGN ."15 \n\n\tWhat type of wood do you want? Enter 0 for Pine or 1 for Oak\n\n");
+	print ("\n\n\tThe materials I can make a sign out of are Pine and Oak ". DOLLAR_SIGN ."15 \n\n\tWhat type of wood do you want? Enter 0 for Pine or 1 for Oak ");
 	chomp ($woodType = <STDIN>);
 	if ($woodType == OAK ){
 		$finalMaterial = "Oak";
@@ -83,18 +83,22 @@ sub setMaterial {
 }
 
 sub setCharacters {
-	my $characterMultiplier = 0;
-	print ("How many characters will be on your sign?");
+	$characterMultiplier = 0;
+	print ("\n\n How many characters will be on your sign? ");
 		chomp ($characters = <STDIN>);
 		if ($characters > MAX_CHARACTERS){
 			$characterMultiplier = $characters - MAX_CHARACTERS;
+			print "multiply";
+			sleep 2;
+			doCharacterMath();
+			
 		}	
 	}
 
 sub setColors {
 	use constant "GOLD_COST" => 12;
 	my $fontChoice;
-	print ("What color font do you what? You can have black(0), white(1), or gold leaf(2)");
+	print ("What color font do you what? You can have black(0), white(1), or gold leaf(2) ");
 	chomp ($fontChoice = <STDIN>);
 	if ($fontChoice == 0){
 		$fontColor = "Black";	
@@ -114,11 +118,11 @@ sub setColors {
 }
 sub printResults {
 	print ("\n\nName: $name");
-	print ("\n\nOrder Num : $orderNumber");
-	print ("\n\nMaterial: $finalMaterial");
-	print ("\n\nCost: $totalCost");
-	print ("\n\nCharacters: $characters");
-	print ("\n\nColor: $fontColor\n\n");
+	print ("\n\nOrder Num : $orderNumber ");
+	print ("\n\nMaterial: $finalMaterial ");
+	print ("\n\nCost: $totalCost ");
+	print ("\n\nCharacters: $characters ");
+	print ("\n\nFont Color: $fontColor\n\n ");
 	sleep 5;
 	
 }
@@ -127,12 +131,12 @@ sub displayError {
 	use constant "WRONG_MATERIAL" => 1;
 
 	if ($errorCode == WRONG_MATERIAL) {
-		print "\nThere is no material for the number you picked! Try again\n\n";
+		print "\nThere is no material for the number you picked! Try again\n\n ";
 		sleep 1;
 		setMaterial();
 	}
 	else {
-		print "\nThere is no color for the number you picked! Try again\n\n";
+		print "\nThere is no color for the number you picked! Try again\n\n ";
 		sleep 1;
 		setColors();
 	}
@@ -142,7 +146,7 @@ sub askToContinue {
 	my $continue;
 	use constant "YES" => 1;
 	use constant "NO" => 0;
-	print "\n\nWould you like to continue?(1for yes 0 for no )";
+	print "\n\nWould you like to make another sign?(1for yes 0 for no ) ";
 	chomp ($continue = <STDIN>);
 	if ($continue == YES){
 		main();
@@ -156,4 +160,8 @@ sub askToContinue {
 		askToContinue();
 		
 	}
+}
+
+sub doCharacterMath {
+	$totalCharacters = $characters * $characterMultiplier;
 }
