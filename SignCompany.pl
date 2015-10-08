@@ -8,15 +8,14 @@ use warnings;
 
 use constant "MIN_CHARGE" => 30;
 use constant "OAK_PRICE" => 15;
-use constant "DOLLAR_SIGN" => '$';
 use constant "MAX_CHARACTERS" => 6;
 use constant "WHITE" => 1;
 use constant "GOLD_LEAF" => 2;
 use constant "MAX_RECUSION" => 2;
 use constant "WRONG_COLOR" => 2;
 
-my ($counter, $finalMaterial, $totalCost, $characters, $fontColor, $orderNumber, $name, $errorCode, $characterMultiplier, $totalCharacters);
-
+my ($counter, $finalMaterial,$characters ,$totalCost, $numCharacters, $orderNumber, $errorCode, $characterMultiplier, $totalCharacters);
+my ($fontColor, $name);
 
 sub main {
 	if (!(defined $totalCost)){
@@ -65,7 +64,7 @@ sub setMaterial {
 	my $woodType;
 	use constant "OAK" => 1;
 	use constant "PINE" => 0;
-	print ("\n\n\tThe materials I can make a sign out of are Pine and Oak ". DOLLAR_SIGN ."15 \n\n\tWhat type of wood do you want? Enter 0 for Pine or 1 for Oak ");
+	print ("\n\n\tThe materials I can make a sign out of are Pine and Oak \$ 15 \n\n\tWhat type of wood do you want? Enter 0 for Pine or 1 for Oak ");
 	chomp ($woodType = <STDIN>);
 	if ($woodType == OAK ) {
 		$finalMaterial = "Oak";
@@ -110,7 +109,7 @@ sub printResults {
 	print ("\n\nName: $name");
 	print ("\n\nOrder Num : $orderNumber ");
 	print ("\n\nMaterial: $finalMaterial ");
-	print ("\n\nCost: $totalCost ");
+	print ("\n\nCost:\$ $totalCost ");
 	print ("\n\nCharacters: $totalCharacters ");
 	print ("\n\nFont Color: $fontColor\n\n ");
 	sleep 5;
