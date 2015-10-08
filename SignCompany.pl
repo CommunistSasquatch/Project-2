@@ -38,11 +38,11 @@ sub main {
 main();
 
 sub setCounter {
-	if (!(defined $counter)){
+	if (!(defined $counter)) {
 		$counter = 0;
-	}else {
+	} else {
 		$counter++;
-	}if ($counter == MAX_RECUSION){
+	} if ($counter == MAX_RECUSION) {
 		print "\n\nyou take up too much energy, goodbye!\n\n";
 		sleep 2;
 		die;
@@ -70,9 +70,9 @@ sub setMaterial {
 	if ($woodType == OAK ) {
 		$finalMaterial = "Oak";
 		$totalCost = $totalCost + OAK_PRICE;
-	}elsif ($woodType == PINE){
+	} elsif ($woodType == PINE) {
 		$finalMaterial = "Pine";
-	}else {
+	} else {
 		$errorCode = 1;
 		displayError();
 	}
@@ -82,7 +82,7 @@ sub setCharacters {
 	$characterMultiplier = 0;
 	print ("\n\n How many characters will be on your sign? ");
 		chomp ($characters = <STDIN>);
-		if ($characters > MAX_CHARACTERS){
+		if ($characters > MAX_CHARACTERS) {
 			$characterMultiplier = $characters - MAX_CHARACTERS;
 			doCharacterMath();
 		}	
@@ -95,13 +95,13 @@ sub setColors {
 	chomp ($fontChoice = <STDIN>);
 	if ($fontChoice == 0){
 		$fontColor = "Black";	
-	}elsif ($fontChoice == WHITE){
+	} elsif ($fontChoice == WHITE) {
 		$fontColor = "White";
-	}elsif ($fontChoice == GOLD_LEAF){
+	} elsif ($fontChoice == GOLD_LEAF) {
 		$fontColor = "GOLD";
 		$totalCost = $totalCost + GOLD_COST;
 		
-	}else {
+	} else {
 		$errorCode = WRONG_COLOR;
 		displayError();
 	}
@@ -124,7 +124,7 @@ sub displayError {
 		print "\nThere is no material for the number you picked! Try again\n\n ";
 		sleep 1;
 		setMaterial();
-	}else {
+	} else {
 		print "\nThere is no color for the number you picked! Try again\n\n ";
 		sleep 1;
 		setColors();
@@ -139,9 +139,9 @@ sub askToContinue {
 	chomp ($continue = <STDIN>);
 	if ($continue == YES){
 		main();
-	}elsif ($continue == NO) {
+	} elsif ($continue == NO) {
 		die;
-	}else {
+	} else {
 		print "\n\nNot a correct answer!\n\n";
 		sleep 2;
 		askToContinue();
