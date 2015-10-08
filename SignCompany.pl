@@ -1,6 +1,6 @@
 ## Assignment: Project 2
 ## Author: Joe Barbercheck (mothman147@gmail.com)
-## Version: 9.28.15.1
+## Version: 9.28.15.6
 ## Purpose: Demonstrate Recusion and "if" statments 
 
 use 5.14.1;
@@ -40,11 +40,9 @@ main();
 sub setCounter {
 	if (!(defined $counter)){
 		$counter = 0;
-	}
-	else {
+	}else {
 		$counter++;
-	}
-	if ($counter == MAX_RECUSION){
+	}if ($counter == MAX_RECUSION){
 		print "\n\nyou take up too much energy, goodbye!\n\n";
 		sleep 2;
 		die;
@@ -69,14 +67,12 @@ sub setMaterial {
 	use constant "PINE" => 0;
 	print ("\n\n\tThe materials I can make a sign out of are Pine and Oak ". DOLLAR_SIGN ."15 \n\n\tWhat type of wood do you want? Enter 0 for Pine or 1 for Oak ");
 	chomp ($woodType = <STDIN>);
-	if ($woodType == OAK ){
+	if ($woodType == OAK ) {
 		$finalMaterial = "Oak";
 		$totalCost = $totalCost + OAK_PRICE;
-		}
-	elsif ($woodType == PINE){
+	}elsif ($woodType == PINE){
 		$finalMaterial = "Pine";
-		}
-	else {
+	}else {
 		$errorCode = 1;
 		displayError();
 	}
@@ -89,9 +85,8 @@ sub setCharacters {
 		if ($characters > MAX_CHARACTERS){
 			$characterMultiplier = $characters - MAX_CHARACTERS;
 			doCharacterMath();
-			
 		}	
-	}
+}
 
 sub setColors {
 	use constant "GOLD_COST" => 12;
@@ -100,16 +95,13 @@ sub setColors {
 	chomp ($fontChoice = <STDIN>);
 	if ($fontChoice == 0){
 		$fontColor = "Black";	
-	}
-	elsif ($fontChoice == WHITE){
+	}elsif ($fontChoice == WHITE){
 		$fontColor = "White";
-	}
-	elsif ($fontChoice == GOLD_LEAF){
+	}elsif ($fontChoice == GOLD_LEAF){
 		$fontColor = "GOLD";
 		$totalCost = $totalCost + GOLD_COST;
 		
-	}
-	else {
+	}else {
 		$errorCode = WRONG_COLOR;
 		displayError();
 	}
@@ -132,8 +124,7 @@ sub displayError {
 		print "\nThere is no material for the number you picked! Try again\n\n ";
 		sleep 1;
 		setMaterial();
-	}
-	else {
+	}else {
 		print "\nThere is no color for the number you picked! Try again\n\n ";
 		sleep 1;
 		setColors();
@@ -148,11 +139,9 @@ sub askToContinue {
 	chomp ($continue = <STDIN>);
 	if ($continue == YES){
 		main();
-	}
-	elsif ($continue == NO) {
+	}elsif ($continue == NO) {
 		die;
-	}
-	else {
+	}else {
 		print "\n\nNot a correct answer!\n\n";
 		sleep 2;
 		askToContinue();
