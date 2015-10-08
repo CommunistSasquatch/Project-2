@@ -88,8 +88,6 @@ sub setCharacters {
 		chomp ($characters = <STDIN>);
 		if ($characters > MAX_CHARACTERS){
 			$characterMultiplier = $characters - MAX_CHARACTERS;
-			print "multiply";
-			sleep 2;
 			doCharacterMath();
 			
 		}	
@@ -121,7 +119,7 @@ sub printResults {
 	print ("\n\nOrder Num : $orderNumber ");
 	print ("\n\nMaterial: $finalMaterial ");
 	print ("\n\nCost: $totalCost ");
-	print ("\n\nCharacters: $characters ");
+	print ("\n\nCharacters: $totalCharacters ");
 	print ("\n\nFont Color: $fontColor\n\n ");
 	sleep 5;
 	
@@ -163,5 +161,8 @@ sub askToContinue {
 }
 
 sub doCharacterMath {
-	$totalCharacters = $characters * $characterMultiplier;
+	$totalCharacters = $characters * 3;
+	$totalCost = $totalCost + $totalCharacters;
+
+		
 }
